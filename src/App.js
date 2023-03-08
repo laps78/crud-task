@@ -1,23 +1,14 @@
 import logo from './logo.svg';
 import './App.css';
+import { useState } from 'react';
+import CRUD_form from './components/CRUD_form/CRUD_form.js'
 
 function App() {
+  const [ actualCRUDS, setAcualCruds ] = useState([]);
+  const addCrud = (newCrud) => setAcualCruds(prevCruds => [...prevCruds, newCrud]);
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <CRUD_form addCrud={addCrud} />
     </div>
   );
 }

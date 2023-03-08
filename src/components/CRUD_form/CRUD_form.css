@@ -1,0 +1,11 @@
+.CRUD_form_wrapper {
+  width: 100%;
+}
+
+.CRUD_form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
