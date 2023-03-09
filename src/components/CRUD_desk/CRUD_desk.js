@@ -1,8 +1,27 @@
-import './CRUD_table.css';
+import './CRUD_desk.css';
+import { useEffect, useState } from 'react';
 
-function CRUD_desk ({cruds, deleteCrud}) {
+function CRUD_desk({ cruds, deleteCrud }) {
+  const [data, setData] = useState([]);
+  const getData = async (url = '', data = {}) => {
+    const responce = await fetch(url, {
+      method: 'GET',
+      'Content-Type': 'application/json',
+    })
+  }
+
+  useEffect(() => {
+    getData('http://localhost:7777/notes')
+      .then((data) => setData(data));
+  })
+
   return (
-    <div className="CRUD_table_wrapper"
+    <div className="CRUD_desk_wrapper">
+      <h3>CRUD desk</h3>
+      <div className="CRUD_desk">
+        { 'the content' }
+      </div>
+    </div>
   );
 }
 
