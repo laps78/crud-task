@@ -4,20 +4,42 @@ import CrudForm from './components/CrudForm/CrudForm.js'
 import CrudDesk from './components/CrudDesk/CrudDesk'
 
 function App() {
-  const postData = async (url = '', data = {}) => {
+  const [actualCRUDS, setActualCRUDS] = useState([]);
+  const getData = async function () {
+    try {
+      let response = await fetch('http://localhost:7070', {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          'Access-Control-Allow-Origin': '*'
+        }
+      });
+      let data = await response.json();
+      console.log(data);
+    } catch (err) {
+      console.log(err);
+    }
+  }
+  
+  getData();
+
+  const postData = async (url = 'http://localhost:7070/notes', data = {}) => {
     const responce = await fetch(url, {
       method: 'POST',
       body: data,
     });
     return responce.json();
   }
-  const [ actualCRUDS, setAcualCruds ] = useState([]);
-  const addCrud = (newCrud) => setAcualCruds(prevCruds => {
-      postData('http://localhost:7777/notes', newCrud);
+  
+
+  // make a js async function that makes 'GET' query to http://localhost:7070 with CORS headers and logs data to console
+  
+  const addCRUD = (newCrud) => setActualCRUDS(prevCruds => {
+      postData('http://localhost:7070/notes', newCrud);
       return [...prevCruds, newCrud];
     }
   );
-  const deleteCrud = (id) => {
+  const deleteCRUD = (id) => {
     // delete from state
     // update request
     return true;
@@ -27,8 +49,8 @@ function App() {
     <div className="App">
       <p>Beshure not forget to start server at <strong>localhost:7777/notes</strong><br/>by typing <strong>"npm start"</strong><br/>in your terminal being at <strong>"~/Проекты/GITHUB/Netology-hw/ra16-homeworks/lifecycle-http/crud-task/backend$"</strong></p>
       <hr/>
-      <CrudDesk cruds={ actualCRUDS } deleteCrud={deleteCrud}/>
-      <CrudForm addCrud={addCrud} />
+      <CrudDesk cruds={ actualCRUDS } deleteCRUD={deleteCRUD}/>
+      <CrudForm addCRUD={addCRUD} />
     </div>
   );
 }
