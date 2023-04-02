@@ -1,7 +1,7 @@
 import './CrudForm.css' ;
 import { nanoid } from 'nanoid';
 
-function CrudForm({ addCrud }) {
+function CrudForm({ addCRUD }) {
   const formSubmitHandler = (evt) => {
     evt.preventDefault();
     const formCurrentValue = evt.target.textarea.value;
@@ -10,7 +10,7 @@ function CrudForm({ addCrud }) {
         id: nanoid(),
         content: formCurrentValue,
       };
-      addCrud(newData);
+      addCRUD(newData);
     }
   }
  return (

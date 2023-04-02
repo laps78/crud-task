@@ -25,6 +25,9 @@ function App() {
 
   const postData = async (url = 'http://localhost:7070/notes', data = {}) => {
     const responce = await fetch(url, {
+      headers: {
+        'Content-Type': 'application/json',
+      },
       method: 'POST',
       body: data,
     });
@@ -47,7 +50,7 @@ function App() {
 
   return (
     <div className="App">
-      <p>Beshure not forget to start server at <strong>localhost:7777/notes</strong><br/>by typing <strong>"npm start"</strong><br/>in your terminal being at <strong>"~/Проекты/GITHUB/Netology-hw/ra16-homeworks/lifecycle-http/crud-task/backend$"</strong></p>
+      <p>Beshure do not forget to start server at <strong>localhost:7777/notes</strong><br/>by typing <strong>"npm start"</strong><br/>in your terminal being at <strong>"~/Проекты/GITHUB/Netology-hw/ra16-homeworks/lifecycle-http/crud-task/backend"</strong></p>
       <hr/>
       <CrudDesk cruds={ actualCRUDS } deleteCRUD={deleteCRUD}/>
       <CrudForm addCRUD={addCRUD} />

@@ -6,7 +6,14 @@ const koaBody = require('koa-body');
 
 const app = new Koa();
 
-app.use(cors());
+app.use(cors({
+  origin: '*',
+  exposeHeaders: ['Content-type', 'WWW-Authenticate', 'Server-Authorization'],
+  maxAge: 5,
+  credentials: false,
+  allowMethods: ['GET', 'POST', 'DELETE'],
+  allowHeaders: ['Content-Type', 'Authorization', 'Accept'],
+}));
 app.use(koaBody({json: true}));
 
 const notes = [];
