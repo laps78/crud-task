@@ -1,5 +1,5 @@
 import './App.css';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import CrudForm from './components/CrudForm/CrudForm.js'
 import CrudDesk from './components/CrudDesk/CrudDesk'
 
@@ -11,7 +11,7 @@ function App() {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
-          'Access-Control-Allow-Origin': '*'
+          'Access-Control-Allow-Origin': '*',
         }
       });
       let data = await response.json();
@@ -20,8 +20,10 @@ function App() {
       console.log(err);
     }
   }
-  
-  getData();
+
+  useEffect(() => {
+    getData();
+  }, []);
 
   const postData = async (url = 'http://localhost:7070/notes', data = {}) => {
     const responce = await fetch(url, {
