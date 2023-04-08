@@ -1,7 +1,7 @@
 import './CrudDesk.css';
 import { useEffect, useState } from 'react';
 
-function CrudDesk({ cruds, deleteCrud }) {
+function CrudDesk({ cruds, deleteCRUD }) {
   const [data, setData] = useState([]);
   const getData = async (url = '', data = {}) => {
     const responce = await fetch(url, {
