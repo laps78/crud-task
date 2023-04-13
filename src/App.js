@@ -7,11 +7,10 @@ function App() {
   const [actualCRUDS, setActualCRUDS] = useState([]);
   const getData = async function () {
     try {
-      let response = await fetch('http://localhost:7070/notes', {
+      let response = await fetch('http://localhost:7777/notes', {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
-          'Access-Control-Allow-Origin': '*',
         }
       });
       let data = await response.json();
@@ -25,11 +24,10 @@ function App() {
     getData();
   }, []);
 
-  const postData = async (url = 'http://localhost:7070/notes', data = {}) => {
+  const postData = async (url = 'http://localhost:7777/notes', data = {}) => {
     const responce = await fetch(url, {
       headers: {
         'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': '*',
       },
       method: 'POST',
       body: JSON.stringify(data),
@@ -41,7 +39,7 @@ function App() {
   // make a js async function that makes 'GET' query to http://localhost:7070 with CORS headers and logs data to console
   
   const addCRUD = (newCrud) => setActualCRUDS(prevCruds => {
-      postData('http://localhost:7070/notes', newCrud);
+      postData('http://localhost:7777/notes', newCrud);
       return [...prevCruds, newCrud];
     }
   );
