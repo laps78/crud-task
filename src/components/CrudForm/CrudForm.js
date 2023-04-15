@@ -6,6 +6,7 @@ function CrudForm({ addCRUD }) {
   const formSubmitHandler = (evt) => {
     evt.preventDefault();
     const formCurrentValue = evt.target.textarea.value;
+    evt.target.textarea.value = "";
     if (formCurrentValue.length > 0) {
       const newData = {
         id: nanoid(),
