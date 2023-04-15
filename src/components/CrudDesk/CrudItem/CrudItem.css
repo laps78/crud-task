@@ -1,0 +1,20 @@
+.deskItem {
+  width: calc(50% - 1rem);
+  border: 1px solid #000000;
+  margin: 0.5rem;
+  padding: 0.5rem;
+  z-index: 0;
+}
+
+.deskItem_button {
+  width: 2rem;
+  height: 2rem;
+  position: relative;
+  top: -1.5rem;
+  left: 95%;
+  border: 1px solid #000000;
+  background-color: #ffffff;
+  border-radius: 50%;
+  z-index: 1000;
+  cursor: pointer;
+}

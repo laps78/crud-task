@@ -104,7 +104,7 @@ function App() {
         },
       });
       let data = await response.json();
-      setActualCRUDS(data);
+      setActualCRUDS((prevCruds) => data);
     } catch (err) {
       console.log(err);
     }
@@ -115,14 +115,13 @@ function App() {
   }, []);
 
   const postData = async (url = "http://localhost:7777/notes", data = {}) => {
-    const responce = await fetch(url, {
+    await fetch(url, {
       headers: {
         "Content-Type": "application/json",
       },
       method: "POST",
       body: JSON.stringify(data),
     });
-    return responce.json();
   };
 
   const addCRUD = (newCrud) =>
@@ -134,7 +133,8 @@ function App() {
   const deleteCRUD = (id) => {
     // delete from state
     setActualCRUDS((prevCruds) => {
-      return prevCruds.filter((crud) => crud.id !== id);
+      asyncDelete(`http://localhost:7777/notes/${id}`, { id });
+      return [...prevCruds.filter((crud) => crud.id !== id)];
     });
     // delete request
     const asyncDelete = async (url, data = {}) => {
@@ -145,7 +145,6 @@ function App() {
         },
       });
     };
-    asyncDelete(`http://localhost:7777/notes/${id}`, id);
     // update request
     getData();
   };
