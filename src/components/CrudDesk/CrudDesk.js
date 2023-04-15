@@ -1,26 +1,28 @@
-import './CrudDesk.css';
-import { useEffect, useState } from 'react';
+import "./CrudDesk.css";
+import { nanoid } from "nanoid";
+import React from "react";
+import CrudItem from "../../components/CrudItem";
 
 function CrudDesk({ cruds, deleteCRUD }) {
-  const [data, setData] = useState([]);
-  const getData = async (url = '', data = {}) => {
-    const responce = await fetch(url, {
-      method: 'GET',
-      'Content-Type': 'application/json',
-    })
-  }
-
-  useEffect(() => {
-    getData('http://localhost:7777/notes')
-      .then((data) => setData(data));
-  })
+  console.log("CRUDDESK-cruds: ", cruds);
+  const makeCruds = () => {
+    cruds.forEach((crud) => {
+      console.log("precreating...", crud.id);
+      return (
+        <CrudItem
+          key={nanoid()}
+          id={crud.id}
+          text={crud.value}
+          deleteFunction={deleteCRUD}
+        />
+      );
+    });
+  };
 
   return (
     <div className="CRUD_desk_wrapper">
       <h3>CRUD desk</h3>
-      <div className="CRUD_desk">
-        { 'the content' }
-      </div>
+      <div className="CRUD_desk">{makeCruds()}</div>
     </div>
   );
 }

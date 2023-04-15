@@ -1,5 +1,6 @@
-import './CrudForm.css' ;
-import { nanoid } from 'nanoid';
+import "./CrudForm.css";
+import React from "react";
+import { nanoid } from "nanoid";
 
 function CrudForm({ addCRUD }) {
   const formSubmitHandler = (evt) => {
@@ -12,15 +13,23 @@ function CrudForm({ addCRUD }) {
       };
       addCRUD(newData);
     }
-  }
- return (
-   <div className="CRUD_form_wrapper">
-    <form className="CRUD_form" onSubmit={formSubmitHandler}>
-      <label htmlFor="textarea"></label>
-       <textarea className="form_textarea" name="textarea" placeholder={``} rows="5"></textarea>
-       <button className="form_submit_button" type="submit">submit</button>
-    </form>
-   </div>); 
+  };
+  return (
+    <div className="CRUD_form_wrapper">
+      <form className="CRUD_form" onSubmit={formSubmitHandler}>
+        <label htmlFor="textarea"></label>
+        <textarea
+          className="form_textarea"
+          name="textarea"
+          placeholder={``}
+          rows="5"
+        ></textarea>
+        <button className="form_submit_button" type="submit">
+          submit
+        </button>
+      </form>
+    </div>
+  );
 }
 
 export default CrudForm;
