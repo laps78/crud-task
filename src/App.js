@@ -54,7 +54,8 @@ function App() {
           headers: {
             "Content-Type": "application/json",
           },
-        }).then(getData());
+        });
+        await getData();
       } catch (err) {
         console.log(err);
       }
